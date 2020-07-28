@@ -4,6 +4,7 @@ import { HttpService } from '../../../services/http.service';
 import { Movie } from '../../../models/movie';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
@@ -16,7 +17,8 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
       private http: HttpService,
       private route: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      private location: Location
   ) {}
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   goToMovies() {
-    this.router.navigate(['/movies'])
+    //to nie pozwala na powrotu do poprzedniego adresu url
+    // this.router.navigate(['/movies'])
+    //ta metoda umożliwia powrót do poprzedniego adresu
+    this.location.back();
   }
 }
