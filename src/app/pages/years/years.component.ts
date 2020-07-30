@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-years',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YearsComponent implements OnInit {
 
-  constructor() { }
+  years: Observable<string[]>;
+
+  constructor(public http: HttpService) { }
 
   ngOnInit(): void {
+    this.years = this.http.getYears();
   }
 
 }
